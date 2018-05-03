@@ -59,7 +59,7 @@ export default {
             bgColor: "cyan darken-3",
             icon: "card_membership",
             title: "New Order",
-            data: "120",
+            data: "200",
             action: {
               label: "More Info",
               link: ""
