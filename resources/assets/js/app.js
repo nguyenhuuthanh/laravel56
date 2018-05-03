@@ -1,22 +1,44 @@
+// The Vue build version to load with the `import` command
+// (runtime-only or standalone) has been set in webpack.base.conf with an alias.
+import Vue from 'vue'
+import Vuetify from 'vuetify'
+import App from './App'
+import router from './router'
+import store from './store'
+import api from './utils/backend-api'
+import appUtil from './utils/app-util'
 
-/**
- * First we will load all of this project's JavaScript dependencies which
- * includes Vue and other libraries. It is a great starting point when
- * building robust, powerful web applications using Vue and Laravel.
- */
+import VueProgressBar from 'vue-progressbar'
 
-require('./bootstrap');
+const options = {
+    color: '#2196f3',
+    failedColor: '#874b4b',
+    thickness: '5px',
+    transition: {
+        speed: '0.1s',
+        opacity: '0.5s',
+        termination: 400
+    },
+    autoRevert: true,
+    location: 'top',
+    inverse: false
+}
 
-window.Vue = require('vue');
+Vue.use(VueProgressBar, options)
 
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
+Vue.use(Vuetify)
+Vue.config.productionTip = false
 
-Vue.component('example-component', require('./components/ExampleComponent.vue'));
+window.Store = store
+Vue.prototype.api = api
+Vue.prototype.appUtil = appUtil
 
-const app = new Vue({
-    el: '#app'
-});
+/* eslint-disable no-new */
+new Vue({
+    el: '#app',
+    router,
+    store,
+    render: h => h(App)
+// template: '<App/>',
+// components: { App }
+})
